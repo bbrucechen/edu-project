@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+            <div class="body advert">
+                <!-- 面包屑 -->
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;">广告管理</a></li>
+                    <li class="active">广告列表</li>
+                </ol>
+                <div class="page-title">
+                    <a href="/advert/add" class="btn btn-success btn-sm pull-right">添加广告</a>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form action="" class="form-inline">
+                            <select name="" class="form-control input-sm">
+                                <option value="">按年龄</option>
+                            </select>
+                            <select name="" class="form-control input-sm">
+                                <option value="">按性别</option>
+                            </select>
+                            <select name="" class="form-control input-sm">
+                                <option value="">按地区</option>
+                            </select>
+                            <select name="" class="form-control input-sm">
+                                <option value="">按日期</option>
+                            </select>
+                            <button class="btn btn-success btn-sm">筛选</button>
+                        </form>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>序号</td>
+                                <th>标题</th>
+                                <th>图片</th>
+                                <th>链接</th>
+                                <th>开始时间</th>
+                                <th>结束时间</th>
+                                <th>点击次数</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data %}
+                            <tr>
+                                <td>0</td>
+                                <td>{{item.title}}</td>
+                                <td><img src="/public/uploads/{{item.image}}" alt=""></td>
+                                <td>{{item.link}}</td>
+                                <td>{{item.start_time}}</td>
+                                <td>{{item.end_time}}</td>
+                                <td>1</td>
+                                <td><a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
+                                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 分页 -->
+                <ul class="pagination pull-right">
+                    {% if page === 1 %}
+                    <li><a href="">上一页</a></li>
+                    {% else %}
+                    <li><a href="/advert?page={{page-1}}">上一页</a></li>
+                    {% endif %}
+                    {% for i in range(0,totalPage) %}
+                     <li><a href="/advert?page={{i+1}}">{{ i+1 }}</a></li>
+                     {% endfor %}
+                    {% if page === totalPage %}
+                    <li><a href="">下一页</a></li>
+                    {% else %}
+                    <li><a href="/advert?page={{page+1}}">下一页</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
